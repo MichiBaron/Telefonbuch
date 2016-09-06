@@ -5,17 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telefonbuch"
         mc:Ignorable="d"
-        Title="Telefonbuch" Height="597" Width="649" FontFamily="Verdana" UseLayoutRounding="True" Background="Black">
-    <Grid Background="#FF74A7E4" MinWidth="300" MinHeight="500">
-        <Label x:Name="labVorname" Height="25" Content="Vorname:" HorizontalAlignment="Left" Margin="30,45,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbVorname"  HorizontalAlignment="Left" Height="25" Margin="135,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labName" Height="25" Content="Name:" HorizontalAlignment="Left" Margin="30,70,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbName"  HorizontalAlignment="Left" Height="25" Margin="135,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="labTeleNum" Height="25" Content="Telefonnummer:" HorizontalAlignment="Left" Margin="30,95,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbTeleNum"  HorizontalAlignment="Left" Height="25" Margin="135,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnSpeichern" Content="Speichern" HorizontalAlignment="Left" Margin="30,146,0,0" VerticalAlignment="Top" Width="75" Click="btnSpeichern_Click"/>
-        <Button x:Name="btnLoeschen" Content="Löschen" HorizontalAlignment="Left" Margin="215,146,0,0" VerticalAlignment="Top" Width="75" Click="btnLoeschen_Click"/>
-        <TextBox x:Name="tbEintrag"  HorizontalAlignment="Left" Height="260" Margin="30,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="355" AcceptsReturn="True" Foreground="#FF0A0A0A" SelectionBrush="#FF3588C9" />
-        <CheckBox x:Name="cbAlles" Content="CheckBox" HorizontalAlignment="Left" Margin="301,150,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        Title="Telefonbuch" Height="597" Width="649" FontFamily="Verdana" UseLayoutRounding="True">
+    <Grid MinWidth="300" MinHeight="500">
+        <Button x:Name="btnNew" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="25" Height="25" ToolTip="Neuer Kontakt wird erstellt">
+            <Button.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/save.bmp"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnOpen" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="25" Height="25" ToolTip="Kontakt öffnen" >
+            <Button.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/folder.bmp"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnPreview" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top" Width="25" Height="25" ToolTip="Vorschau wird angezeigt">
+            <Button.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/book1.bmp"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnSave" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="25" Height="25" ToolTip="Kontakt wird gespeichert">
+            <Button.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/save.bmp"/>
+            </Button.Background>
+        </Button>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="365" Margin="10,50,0,0" VerticalAlignment="Top" Width="620">
+            <TabItem Name="tabAll" Header="Allgemein">
+                <Grid Background="#FF69A1E4">
+                    <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="105,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262"/>
+                    <Label x:Name="labName" Content="Name:" HorizontalAlignment="Left" Margin="22,18,0,0" VerticalAlignment="Top" Width="64"/>
+                    <TextBox x:Name="tbVorname" HorizontalAlignment="Left" Height="23" Margin="105,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262"/>
+                    <Label x:Name="labVorname" Content="Vorname:" HorizontalAlignment="Left" Margin="22,51,0,0" VerticalAlignment="Top" Width="64"/>
+                    <TextBox x:Name="tbSpitzname" HorizontalAlignment="Left" Height="23" Margin="105,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262"/>
+                    <Label x:Name="labSpitzname" Content="Spitzname:" HorizontalAlignment="Left" Margin="22,83,0,0" VerticalAlignment="Top" Width="64"/>
+                    <TextBox x:Name="tbTitel" HorizontalAlignment="Left" Height="23" Margin="105,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262"/>
+                    <Label x:Name="labTitel" Content="Titel:" HorizontalAlignment="Left" Margin="22,116,0,0" VerticalAlignment="Top" Width="64"/>
+                    <GroupBox x:Name="gbGender" Header="Geschlecht" HorizontalAlignment="Left" Margin="395,16,0,0" VerticalAlignment="Top" Height="95" Width="127">
+                        <Grid>
+
+                            <RadioButton x:Name="rbmale" Content="Männlich" HorizontalAlignment="Left" VerticalAlignment="Top" GroupName="gender" Margin="15,15,0,0" IsChecked="True"/>
+                            <RadioButton x:Name="rbfemale" Content="Weiblich" HorizontalAlignment="Left" VerticalAlignment="Top" GroupName="gender" Margin="15,39,0,0"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" Margin="25,156,0,0" VerticalAlignment="Top" Height="155" Width="365">
+                        <Grid>
+                            <ComboBox x:Name="cobShowAs" HorizontalAlignment="Center" Margin="5,10,0,5" VerticalAlignment="Top" Width="330" SelectedIndex="1" Cursor="UpArrow">
+                                <ComboBoxItem Content="Name, Vorname" HorizontalAlignment="Center" Width="328"/>
+                                <ComboBoxItem Content="Vorname, Name" HorizontalAlignment="Center" Width="328"/>
+                                <ComboBoxItem Content="Titel Vorname Name" HorizontalAlignment="Center" Width="328"/>
+                                <ComboBoxItem Content="Name, Vorname (Spitzname)" HorizontalAlignment="Center" Width="328"/>
+                            </ComboBox>
+                            <Label x:Name="labExaple" Content="Beispiel:" HorizontalAlignment="Left" Margin="15,50,0,0" VerticalAlignment="Top" Width="328"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <Image x:Name="pbContact" HorizontalAlignment="Left" Height="180" Margin="410,130,0,0" VerticalAlignment="Top" Width="180" ScrollViewer.VerticalScrollBarVisibility="Disabled" Source="pack://siteoforigin:,,,/Resources/contact.png" Stretch="UniformToFill"/>
+                    <Border BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Left" Height="180" Margin="410,130,0,0" VerticalAlignment="Top" Width="180" Panel.ZIndex="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Name="tabTele" Header="Telefonnummern">
+                <Grid Background="#FF5062D6"/>
+            </TabItem>
+            <TabItem Name="tabAddress" Header="Adresse">
+                <Grid Background="#FF6D6DD4"/>
+            </TabItem>
+            <TabItem Name="tabSons" Header="Sontiges">
+                <Grid Background="#FF9CAAD8"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
